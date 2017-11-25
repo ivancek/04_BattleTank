@@ -7,16 +7,7 @@
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
-
-	if (ATank* Tank = GetControlledTank())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("AI Controller: %s"), *Tank->GetName());
-	}
-
-	if (ATank* PlayerTank = GetPlayerTank())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("AI Controller: Found player tank ( %s )"), *PlayerTank->GetName());
-	}
+	
 }
 
 ATank* ATankAIController::GetControlledTank() const
