@@ -6,6 +6,7 @@
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
+class ATank;
 /**
  * 
  */
@@ -21,7 +22,7 @@ public:
 private:
 	void AimAtPlayer();
 	
-	class ATank* GetControlledTank() const;
-	class ATank* GetPlayerTank() const;
+	ATank* GetControlledTank() const;
+	ATank* GetPlayerTank() const;
 
 };
