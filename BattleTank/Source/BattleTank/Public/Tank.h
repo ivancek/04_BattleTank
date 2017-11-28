@@ -8,6 +8,7 @@
 
 class UTankBarrel;
 class UTankAimingComponent;
+
 class UTankTurret;
 class AProjectile;
 
@@ -34,6 +35,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UTankAimingComponent* TankAimingComponent = nullptr;
+	
 
 public:	
 	// Called to bind functionality to input
