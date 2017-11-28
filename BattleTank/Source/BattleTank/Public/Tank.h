@@ -8,7 +8,7 @@
 
 class UTankBarrel;
 class UTankAimingComponent;
-
+class UTankMovementComponent;
 class UTankTurret;
 class AProjectile;
 
@@ -36,6 +36,8 @@ protected:
 
 	UTankAimingComponent* TankAimingComponent = nullptr;
 	
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
 
 public:	
 	// Called to bind functionality to input
@@ -43,11 +45,17 @@ public:
 
 	void AimAt(FVector);
 	
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float ReloadTime = 3;
+	
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 4000;
 
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UTankBarrel* Barrel = nullptr;
+
+private:
+	double LastFireTime = 0;
 };

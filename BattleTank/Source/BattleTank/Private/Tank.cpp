@@ -6,7 +6,7 @@
 #include "TankTurret.h"
 #include "Engine/World.h"
 #include "Projectile.h"
-
+#include "TankMovementComponent.h"
 
 // Sets default values
 ATank::ATank()
@@ -33,18 +33,20 @@ void ATank::SetTurretReference(UTankTurret * TurretToSet)
 
 void ATank::Fire()
 {
+	bool isReloaded = FPlatformTime::Seconds() - LastFireTime > ReloadTime;
 	
+	if (Barrel && isReloaded)
+	{
+		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
+			ProjectileBlueprint,
+			Barrel->GetSocketLocation(FName("Projectile")),
+			Barrel->GetSocketRotation(FName("Projectile"))
+		);
 
-	if (!Barrel) { return; }
+		Projectile->LaunchProjectile(LaunchSpeed);
 
-	auto Projectile = GetWorld()->SpawnActor<AProjectile>(
-		ProjectileBlueprint,
-		Barrel->GetSocketLocation(FName("Projectile")),
-		Barrel->GetSocketRotation(FName("Projectile"))
-	);
-
-	Projectile->LaunchProjectile(LaunchSpeed);
-	
+		LastFireTime = FPlatformTime::Seconds();
+	}
 }
 
 
