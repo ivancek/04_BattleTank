@@ -22,15 +22,7 @@ void UTankMovementComponent::IntendTurnRight(float Throw)
 	if (!LeftTracks || !RightTracks) { return; }
 
 	LeftTracks->SetThrottle(Throw);
-	RightTracks->SetThrottle(0);
-}
-
-void UTankMovementComponent::IntendTurnLeft(float Throw)
-{
-	if (!LeftTracks || !RightTracks) { return; }
-
-	LeftTracks->SetThrottle(0);
-	RightTracks->SetThrottle(Throw);
+	RightTracks->SetThrottle(-Throw);
 }
 
 void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
@@ -39,12 +31,8 @@ void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, boo
 	auto ForwardDirection = GetOwner()->GetActorForwardVector().GetSafeNormal();
 
 	auto ForwardThrow = FVector::DotProduct(ForwardDirection, ForwardIntention);
-
 	IntendMoveForward(ForwardThrow);
 
 	auto TurnThrow = FVector::CrossProduct(ForwardDirection, ForwardIntention);
-
 	IntendTurnRight(TurnThrow.Z);
-
-	UE_LOG(LogTemp, Warning, TEXT("Throw: %f"), ForwardThrow);
 }

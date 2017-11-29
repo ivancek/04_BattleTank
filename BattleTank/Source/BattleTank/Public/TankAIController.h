@@ -20,7 +20,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	void AimAtPlayer();
+	void PlayAgainstPlayer();
 
 	float AcceptanceRadius = 3;
 };
