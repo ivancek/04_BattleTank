@@ -27,6 +27,7 @@ public:
 	void LaunchProjectile(float);
 
 private:
+	UPROPERTY()
 	UProjectileMovementComponent* ProjectileComponent = nullptr;
 	
 };
