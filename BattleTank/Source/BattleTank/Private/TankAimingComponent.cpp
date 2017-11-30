@@ -52,6 +52,11 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	}
 }
 
+void UTankAimingComponent::AimAt(FVector HitLocation)
+{
+	AimAt(HitLocation, LaunchSpeed);
+}
+
 void UTankAimingComponent::MoveBarrelAndTurretTowards(FVector AimDirection)
 {
 	if (!ensure(Barrel && Turret)) { return; }

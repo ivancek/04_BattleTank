@@ -3,10 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "TankAimingComponent.h"
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
 class ATank;
+class UTankAimingComponent;
 /**
  * 
  */
@@ -21,6 +23,6 @@ public:
 
 private:
 	void PlayAgainstPlayer();
-
+	UTankAimingComponent* AimingComponent = nullptr;
 	float AcceptanceRadius = 3;
 };

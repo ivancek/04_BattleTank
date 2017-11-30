@@ -7,7 +7,9 @@
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	ATank* ControlledTank = Cast<ATank>(GetPawn());
+	AimingComponent = ControlledTank->FindComponentByClass<UTankAimingComponent>();
 }
 
 
@@ -27,7 +29,7 @@ void ATankAIController::PlayAgainstPlayer()
 	if (!ensure(ControlledTank)) { return; }
 	if (!ensure(TargetTank)) { return; }
 
-	ControlledTank->AimAt(TargetTank->GetActorLocation());
+	AimingComponent->AimAt(TargetTank->GetActorLocation());
 	ControlledTank->Fire();
 	MoveToActor(TargetTank, AcceptanceRadius);
 }

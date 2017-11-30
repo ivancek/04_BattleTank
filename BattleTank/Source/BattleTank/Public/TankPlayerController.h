@@ -22,9 +22,6 @@ public:
 
 
 protected:
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	ATank* GetControlledTank() const;
-
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 	void FoundAimingComponent(UTankAimingComponent* AimingCompRef);
 
@@ -33,6 +30,8 @@ private:
 	bool GetSightRayHitLocation(FVector&) const;
 	bool GetLookDirection(FVector2D, FVector&) const;
 	bool GetLookVectorHitLocation(FVector, FVector&) const;
+
+	UTankAimingComponent* AimingComponent = nullptr;
 
 	UPROPERTY(EditAnywhere)
 	float CrossHairXLocation = 0.5f;

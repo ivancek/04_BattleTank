@@ -30,6 +30,7 @@ public:
 	
 	
 	void AimAt(FVector, float);
+	void AimAt(FVector);
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
@@ -38,6 +39,10 @@ protected:
 private:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
+
+	// TODO Remove once done
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	float LaunchSpeed = 4000;
 
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
