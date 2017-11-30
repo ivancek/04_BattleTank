@@ -24,8 +24,8 @@ void ATankAIController::PlayAgainstPlayer()
 	ATank* ControlledTank = Cast<ATank>(GetPawn());
 	ATank* TargetTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 
-	if (!ControlledTank) { return; }
-	if (!TargetTank) { return; }
+	if (!ensure(ControlledTank)) { return; }
+	if (!ensure(TargetTank)) { return; }
 
 	ControlledTank->AimAt(TargetTank->GetActorLocation());
 	ControlledTank->Fire();
